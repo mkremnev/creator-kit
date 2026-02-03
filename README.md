@@ -1,6 +1,22 @@
 # Creator Kit
 
-CLI tool for scaffolding AI-assisted content creation workflow files.
+<p align="center">
+  <img src="docs/promo.jpeg" alt="Creator Kit" width="600">
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/creator-kit"><img src="https://img.shields.io/npm/v/creator-kit.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/creator-kit"><img src="https://img.shields.io/npm/dm/creator-kit.svg" alt="npm downloads"></a>
+  <a href="https://github.com/mkremnev/creator-kit/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/creator-kit.svg" alt="license"></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/node/v/creator-kit.svg" alt="node version"></a>
+  <a href="https://github.com/mkremnev/creator-kit"><img src="https://img.shields.io/github/stars/mkremnev/creator-kit?style=social" alt="GitHub stars"></a>
+</p>
+
+<p align="center">
+  CLI tool for scaffolding AI-assisted content creation workflow files.
+</p>
+
+---
 
 ## Installation
 
