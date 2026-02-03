@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "provider": "claude",
+  "settings": {
+    "defaultPlatform": "linkedin",
+    "contentDirectory": "content",
+    "autoSave": true
+  },
+  "platforms": {
+    "linkedin": {
+      "characterLimit": 3000,
+      "recommendedLength": {
+        "min": 1300,
+        "max": 2000
+      },
+      "hashtagCount": {
+        "min": 3,
+        "max": 5
+      }
+    },
+    "twitter": {
+      "characterLimit": 280,
+      "threadLength": {
+        "min": 5,
+        "max": 15,
+        "recommended": 7
+      }
+    },
+    "telegram": {
+      "characterLimit": 4096,
+      "recommendedLength": {
+        "min": 200,
+        "max": 1500
+      }
+    }
+  },
+  "templates": {
+    "content": [
+      "linkedin-post-template.md",
+      "telegram-post-template.md",
+      "twitter-thread-template.md"
+    ],
+    "workflow": [
+      "content-brief-template.md",
+      "content-plan-template.md",
+      "content-tasks-template.md",
+      "content-checklist-template.md"
+    ]
+  }
+}
