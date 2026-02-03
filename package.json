@@ -6,7 +6,7 @@
   "main": "./dist/cli/index.js",
   "types": "./dist/cli/index.d.ts",
   "bin": {
-    "creator": "./dist/cli/index.mjs"
+    "creator": "./dist/cli/index.js"
   },
   "files": [
     "dist"
