@@ -24,8 +24,9 @@ export async function initCommand(options: InitOptions): Promise<InitResult> {
   // Validate provider
   const validation = validateProvider(options.ai);
   if (!validation.valid || !validation.provider) {
-    console.error(formatError(validation.error ?? 'Invalid provider'));
-    return { exitCode: 2, error: validation.error };
+    const errorMsg = validation.error ?? 'Invalid provider';
+    console.error(formatError(errorMsg));
+    return { exitCode: 2, error: errorMsg };
   }
 
   const provider = validation.provider;
@@ -61,9 +62,10 @@ export async function initCommand(options: InitOptions): Promise<InitResult> {
   const result = await scaffoldFiles(manifest, targetDir);
 
   if (!result.success) {
-    console.error(formatError(result.error ?? 'Failed to scaffold files'));
+    const errorMsg = result.error ?? 'Failed to scaffold files';
+    console.error(formatError(errorMsg));
     const exitCode = result.isPermissionError === true ? 3 : 1;
-    return { exitCode, error: result.error };
+    return { exitCode, error: errorMsg };
   }
 
   // Write metadata

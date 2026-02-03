@@ -28,8 +28,9 @@ export async function updateCommand(options: UpdateOptions): Promise<UpdateResul
   // Check if initialized
   const detection = await detectInstallation(targetDir);
   if (!detection.initialized || !detection.meta) {
-    console.error(formatError(detection.error ?? 'Not initialized'));
-    return { exitCode: 5, error: detection.error };
+    const errorMsg = detection.error ?? 'Not initialized';
+    console.error(formatError(errorMsg));
+    return { exitCode: 5, error: errorMsg };
   }
 
   const meta = detection.meta;

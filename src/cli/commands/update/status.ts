@@ -70,13 +70,18 @@ export async function checkFileStatus(
     bundledHash,
   });
 
-  return {
+  const result: FileCheckResult = {
     file,
     status,
-    currentHash,
-    originalHash,
     bundledHash,
   };
+  if (currentHash !== undefined) {
+    result.currentHash = currentHash;
+  }
+  if (originalHash !== undefined) {
+    result.originalHash = originalHash;
+  }
+  return result;
 }
 
 export async function checkAllFiles(

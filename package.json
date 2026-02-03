@@ -1,6 +1,7 @@
 {
   "name": "creator-kit",
   "version": "1.0.0",
+  "type": "module",
   "description": "CLI tool for scaffolding AI-assisted content creation workflow files",
   "main": "./dist/cli/index.js",
   "types": "./dist/cli/index.d.ts",
