@@ -50,7 +50,7 @@ describe('update command', () => {
       await initCommand({ ai: 'claude', force: false });
 
       // Modify constitution file
-      const constitutionPath = join(tempDir, '.specify/memory/constitution.md');
+      const constitutionPath = join(tempDir, '.contents/memory/constitution.md');
       const customContent = '# My Custom Constitution\n\nCustom content here.';
       await writeFile(constitutionPath, customContent);
 
@@ -76,12 +76,12 @@ describe('update command', () => {
       await initCommand({ ai: 'claude', force: false });
 
       // Modify constitution file
-      const constitutionPath = join(tempDir, '.specify/memory/constitution.md');
+      const constitutionPath = join(tempDir, '.contents/memory/constitution.md');
       const customContent = '# My Custom Constitution';
       await writeFile(constitutionPath, customContent);
 
       // Delete a file to trigger an update
-      const configPath = join(tempDir, '.specify/config.json');
+      const configPath = join(tempDir, '.contents/config.json');
       await rm(configPath);
 
       // Update with force - this triggers update because config.json is missing (new)
@@ -104,7 +104,7 @@ describe('update command', () => {
       await initCommand({ ai: 'claude', force: false });
 
       // Simulate removing a file that update should restore
-      const filePath = join(tempDir, '.specify/config.json');
+      const filePath = join(tempDir, '.contents/config.json');
       await rm(filePath);
 
       // Update
@@ -122,10 +122,10 @@ describe('update command', () => {
       // Initialize
       await initCommand({ ai: 'claude', force: false });
 
-      const metaPath = join(tempDir, '.specify/.creator-meta.json');
+      const metaPath = join(tempDir, '.contents/.creator-meta.json');
 
       // Delete a file to trigger actual update
-      const configPath = join(tempDir, '.specify/config.json');
+      const configPath = join(tempDir, '.contents/config.json');
       await rm(configPath);
 
       // Wait a bit to ensure different timestamp

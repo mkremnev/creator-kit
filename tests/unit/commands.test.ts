@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
-import { glob } from 'fs/promises';
 
 describe('command template files', () => {
   const templatesDir = join(process.cwd(), 'src/templates/commands');
@@ -35,13 +34,13 @@ describe('command template files', () => {
       expect(content).not.toMatch(/\/speckit\./);
     });
 
-    it.each(expectedCommands)('%s should reference .specify/ paths correctly', async (filename) => {
+    it.each(expectedCommands)('%s should reference .contents/ paths correctly', async (filename) => {
       const filePath = join(templatesDir, filename);
       const content = await readFile(filePath, 'utf-8').catch(() => '');
 
       // If it references templates, should use correct path format
       if (content.includes('templates/')) {
-        expect(content).toMatch(/\.specify\/templates\//);
+        expect(content).toMatch(/\.contents\/templates\//);
       }
     });
   });

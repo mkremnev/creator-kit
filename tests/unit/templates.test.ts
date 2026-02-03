@@ -65,8 +65,8 @@ describe('template files', () => {
       expect(content).not.toBeNull();
 
       // Should be valid JSON
-      if (content) {
-        expect(() => JSON.parse(content)).not.toThrow();
+      if (content !== null) {
+        expect(() => JSON.parse(content) as unknown).not.toThrow();
       }
     });
   });

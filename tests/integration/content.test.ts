@@ -6,7 +6,7 @@ describe('scaffolded file content', () => {
   const templatesDir = join(process.cwd(), 'src/templates');
 
   describe('command files internal paths', () => {
-    it('all command files should reference .specify/ paths correctly', async () => {
+    it('all command files should reference .contents/ paths correctly', async () => {
       const commandsDir = join(templatesDir, 'commands');
       const files = await readdir(commandsDir);
 
@@ -15,21 +15,21 @@ describe('scaffolded file content', () => {
 
         const content = await readFile(join(commandsDir, file), 'utf-8');
 
-        // Check that .specify/ references are correct format
-        const specifyMatches = content.match(/\.specify\/[^\s\)]+/g) || [];
+        // Check that .contents/ references are correct format
+        const contentsMatches = content.match(/\.contents\/[^\s)]+/g) ?? [];
 
-        for (const match of specifyMatches) {
-          // Should start with .specify/
-          expect(match.startsWith('.specify/')).toBe(true);
+        for (const match of contentsMatches) {
+          // Should start with .contents/
+          expect(match.startsWith('.contents/')).toBe(true);
 
           // Should be a valid path structure
           const validPaths = [
-            '.specify/templates/content/',
-            '.specify/templates/workflow/',
-            '.specify/scripts/bash/',
-            '.specify/memory/',
-            '.specify/config.json',
-            '.specify/.creator-meta.json',
+            '.contents/templates/content/',
+            '.contents/templates/workflow/',
+            '.contents/scripts/bash/',
+            '.contents/memory/',
+            '.contents/config.json',
+            '.contents/.creator-meta.json',
           ];
 
           const isValidPath = validPaths.some((p) => match.startsWith(p));
@@ -97,9 +97,9 @@ describe('scaffolded file content', () => {
       const configPath = join(templatesDir, 'config/config.json');
       const content = await readFile(configPath, 'utf-8');
 
-      expect(() => JSON.parse(content)).not.toThrow();
+      expect(() => JSON.parse(content) as unknown).not.toThrow();
 
-      const config = JSON.parse(content);
+      const config = JSON.parse(content) as { version?: string; provider?: string };
       expect(config.version).toBeDefined();
       expect(config.provider).toBe('claude');
     });

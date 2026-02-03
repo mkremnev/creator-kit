@@ -74,22 +74,22 @@ export async function initCommand(options: InitOptions): Promise<InitResult> {
   const counts = countFilesByCategory(manifest.files);
 
   console.log('');
-  if (counts['command']) {
+  if (counts['command'] !== undefined && counts['command'] > 0) {
     console.log(formatFileCount('.claude/commands/', counts['command']));
   }
-  if (counts['content']) {
+  if (counts['content'] !== undefined && counts['content'] > 0) {
     console.log(formatFileCount('.contents/templates/content/', counts['content']));
   }
-  if (counts['workflow']) {
+  if (counts['workflow'] !== undefined && counts['workflow'] > 0) {
     console.log(formatFileCount('.contents/templates/workflow/', counts['workflow']));
   }
-  if (counts['script']) {
+  if (counts['script'] !== undefined && counts['script'] > 0) {
     console.log(formatFileCount('.contents/scripts/bash/', counts['script']));
   }
-  if (counts['memory']) {
+  if (counts['memory'] !== undefined && counts['memory'] > 0) {
     console.log(`${symbols.check} Created .contents/memory/constitution.md`);
   }
-  if (counts['config']) {
+  if (counts['config'] !== undefined && counts['config'] > 0) {
     console.log(`${symbols.check} Created .contents/config.json`);
   }
 

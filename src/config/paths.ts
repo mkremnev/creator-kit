@@ -11,7 +11,7 @@ const { pathExists } = fsExtra;
 let cachedTemplatesDir: string | null = null;
 
 export async function getTemplatesDir(): Promise<string> {
-  if (cachedTemplatesDir) {
+  if (cachedTemplatesDir !== null) {
     return cachedTemplatesDir;
   }
 

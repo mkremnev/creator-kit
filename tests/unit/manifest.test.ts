@@ -16,10 +16,10 @@ describe('scaffold manifest', () => {
       const manifest = buildManifest(CLAUDE_PROVIDER);
 
       expect(manifest.directories).toContain('.claude/commands');
-      expect(manifest.directories).toContain('.specify/templates/content');
-      expect(manifest.directories).toContain('.specify/templates/workflow');
-      expect(manifest.directories).toContain('.specify/scripts/bash');
-      expect(manifest.directories).toContain('.specify/memory');
+      expect(manifest.directories).toContain('.contents/templates/content');
+      expect(manifest.directories).toContain('.contents/templates/workflow');
+      expect(manifest.directories).toContain('.contents/scripts/bash');
+      expect(manifest.directories).toContain('.contents/memory');
     });
 
     it('should include command template files', () => {
@@ -48,7 +48,7 @@ describe('scaffold manifest', () => {
 
       expect(contentFiles.length).toBe(3);
       expect(contentFiles.map((f) => f.targetPath)).toContain(
-        '.specify/templates/content/linkedin-post-template.md'
+        '.contents/templates/content/linkedin-post-template.md'
       );
     });
 
@@ -57,7 +57,7 @@ describe('scaffold manifest', () => {
       const memoryFiles = manifest.files.filter((f) => f.category === 'memory');
 
       expect(memoryFiles.length).toBe(1);
-      expect(memoryFiles[0]?.targetPath).toBe('.specify/memory/constitution.md');
+      expect(memoryFiles[0]?.targetPath).toBe('.contents/memory/constitution.md');
     });
 
     it('should include config file', () => {
@@ -65,7 +65,7 @@ describe('scaffold manifest', () => {
       const configFiles = manifest.files.filter((f) => f.category === 'config');
 
       expect(configFiles.length).toBe(1);
-      expect(configFiles[0]?.targetPath).toBe('.specify/config.json');
+      expect(configFiles[0]?.targetPath).toBe('.contents/config.json');
     });
   });
 });

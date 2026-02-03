@@ -26,10 +26,10 @@ describe('init command', () => {
       await initCommand({ ai: 'claude', force: false });
 
       expect(await directoryExists(join(tempDir, '.claude/commands'))).toBe(true);
-      expect(await directoryExists(join(tempDir, '.specify/templates/content'))).toBe(true);
-      expect(await directoryExists(join(tempDir, '.specify/templates/workflow'))).toBe(true);
-      expect(await directoryExists(join(tempDir, '.specify/scripts/bash'))).toBe(true);
-      expect(await directoryExists(join(tempDir, '.specify/memory'))).toBe(true);
+      expect(await directoryExists(join(tempDir, '.contents/templates/content'))).toBe(true);
+      expect(await directoryExists(join(tempDir, '.contents/templates/workflow'))).toBe(true);
+      expect(await directoryExists(join(tempDir, '.contents/scripts/bash'))).toBe(true);
+      expect(await directoryExists(join(tempDir, '.contents/memory'))).toBe(true);
     });
 
     it('should create command files', async () => {
@@ -51,30 +51,30 @@ describe('init command', () => {
       await initCommand({ ai: 'claude', force: false });
 
       expect(
-        await fileExists(join(tempDir, '.specify/templates/content/linkedin-post-template.md'))
+        await fileExists(join(tempDir, '.contents/templates/content/linkedin-post-template.md'))
       ).toBe(true);
       expect(
-        await fileExists(join(tempDir, '.specify/templates/content/telegram-post-template.md'))
+        await fileExists(join(tempDir, '.contents/templates/content/telegram-post-template.md'))
       ).toBe(true);
       expect(
-        await fileExists(join(tempDir, '.specify/templates/content/twitter-thread-template.md'))
+        await fileExists(join(tempDir, '.contents/templates/content/twitter-thread-template.md'))
       ).toBe(true);
       expect(
-        await fileExists(join(tempDir, '.specify/templates/workflow/content-brief-template.md'))
+        await fileExists(join(tempDir, '.contents/templates/workflow/content-brief-template.md'))
       ).toBe(true);
     });
 
     it('should create constitution and config files', async () => {
       await initCommand({ ai: 'claude', force: false });
 
-      expect(await fileExists(join(tempDir, '.specify/memory/constitution.md'))).toBe(true);
-      expect(await fileExists(join(tempDir, '.specify/config.json'))).toBe(true);
+      expect(await fileExists(join(tempDir, '.contents/memory/constitution.md'))).toBe(true);
+      expect(await fileExists(join(tempDir, '.contents/config.json'))).toBe(true);
     });
 
     it('should create .creator-meta.json with correct structure', async () => {
       await initCommand({ ai: 'claude', force: false });
 
-      const metaPath = join(tempDir, '.specify/.creator-meta.json');
+      const metaPath = join(tempDir, '.contents/.creator-meta.json');
       expect(await fileExists(metaPath)).toBe(true);
 
       const meta = await readJsonFile<CreatorMeta>(metaPath);
@@ -110,7 +110,7 @@ describe('init command', () => {
       await initCommand({ ai: 'claude', force: false });
 
       // Modify a file
-      const constitutionPath = join(tempDir, '.specify/memory/constitution.md');
+      const constitutionPath = join(tempDir, '.contents/memory/constitution.md');
       await writeFile(constitutionPath, 'Modified content');
 
       // Second init with force

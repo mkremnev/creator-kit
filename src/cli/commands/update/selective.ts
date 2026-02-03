@@ -41,7 +41,7 @@ export async function performSelectiveUpdate(
 
       case 'unchanged':
         // No changes needed, keep existing hash
-        if (result.currentHash) {
+        if (result.currentHash !== undefined) {
           newHashes[result.file.targetPath] = result.currentHash;
         }
         break;
@@ -56,7 +56,7 @@ export async function performSelectiveUpdate(
       case 'modified':
         // User modified, template same - preserve user's version
         preserved.push(result.file.targetPath);
-        if (result.currentHash) {
+        if (result.currentHash !== undefined) {
           newHashes[result.file.targetPath] = result.currentHash;
         }
         break;
@@ -71,7 +71,7 @@ export async function performSelectiveUpdate(
           // Preserve user's version, report conflict
           conflicts.push(result.file.targetPath);
           preserved.push(result.file.targetPath);
-          if (result.currentHash) {
+          if (result.currentHash !== undefined) {
             newHashes[result.file.targetPath] = result.currentHash;
           }
         }
