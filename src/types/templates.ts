@@ -8,7 +8,8 @@ export type TemplateCategory =
   | 'content'
   | 'script'
   | 'memory'
-  | 'config';
+  | 'config'
+  | 'skill';
 
 export interface TransformRule {
   pattern: RegExp;

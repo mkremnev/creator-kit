@@ -117,6 +117,38 @@ describe('update command', () => {
     });
   });
 
+  describe('deploys skill files via update', () => {
+    it('should deploy skill file to projects that do not yet have it', async () => {
+      // Initialize
+      await initCommand({ ai: 'claude', force: false });
+
+      // Remove skill file to simulate pre-skill project
+      const skillPath = join(tempDir, '.claude/skills/humanizer/SKILL.md');
+      await rm(skillPath);
+
+      // Update should restore the skill file
+      const result = await updateCommand({ force: false, backup: true });
+
+      expect(result.exitCode).toBe(0);
+      expect(await fileExists(skillPath)).toBe(true);
+    });
+
+    it('should deploy humanizer command file to projects that do not yet have it', async () => {
+      // Initialize
+      await initCommand({ ai: 'claude', force: false });
+
+      // Remove humanizer command to simulate pre-skill project
+      const commandPath = join(tempDir, '.claude/commands/creator.humanizer.md');
+      await rm(commandPath);
+
+      // Update should restore the command file
+      const result = await updateCommand({ force: false, backup: true });
+
+      expect(result.exitCode).toBe(0);
+      expect(await fileExists(commandPath)).toBe(true);
+    });
+  });
+
   describe('updates meta file', () => {
     it('should update .creator-meta.json after update with changes', async () => {
       // Initialize

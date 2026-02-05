@@ -94,6 +94,9 @@ export async function initCommand(options: InitOptions): Promise<InitResult> {
   if (counts['config'] !== undefined && counts['config'] > 0) {
     console.log(`${symbols.check} Created .contents/config.json`);
   }
+  if (counts['skill'] !== undefined && counts['skill'] > 0) {
+    console.log(formatFileCount('.claude/skills/', counts['skill']));
+  }
 
   console.log('');
   console.log(formatSuccess('Creator Kit initialized successfully!'));

@@ -43,6 +43,11 @@ export function getCommandTemplates(): TemplateFile[] {
       '.claude/commands/creator.verify.md',
       'command'
     ),
+    createTemplateFile(
+      'commands/creator.humanizer.md',
+      '.claude/commands/creator.humanizer.md',
+      'command'
+    ),
   ];
 }
 
@@ -111,6 +116,16 @@ export function getScriptTemplates(): TemplateFile[] {
   ];
 }
 
+export function getSkillTemplates(): TemplateFile[] {
+  return [
+    createTemplateFile(
+      'skills/humanizer/SKILL.md',
+      '.claude/skills/humanizer/SKILL.md',
+      'skill'
+    ),
+  ];
+}
+
 export function getAllTemplates(): TemplateFile[] {
   return [
     ...getCommandTemplates(),
@@ -119,5 +134,6 @@ export function getAllTemplates(): TemplateFile[] {
     ...getMemoryTemplates(),
     ...getConfigTemplates(),
     ...getScriptTemplates(),
+    ...getSkillTemplates(),
   ];
 }

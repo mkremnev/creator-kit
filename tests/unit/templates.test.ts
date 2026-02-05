@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
+import { getSkillTemplates } from '../../src/config/mappings.js';
 
 describe('template files', () => {
   const templatesDir = join(process.cwd(), 'src/templates');
@@ -55,6 +56,45 @@ describe('template files', () => {
       const filePath = join(templatesDir, 'memory/constitution.md');
       const content = await readFile(filePath, 'utf-8').catch(() => null);
       expect(content).not.toBeNull();
+    });
+  });
+
+  describe('skill templates', () => {
+    it('should return exactly 1 skill template with correct mapping', () => {
+      const skills = getSkillTemplates();
+
+      expect(skills).toHaveLength(1);
+      expect(skills[0]?.category).toBe('skill');
+      expect(skills[0]?.sourcePath).toBe('skills/humanizer/SKILL.md');
+      expect(skills[0]?.targetPath).toBe('.claude/skills/humanizer/SKILL.md');
+    });
+
+    it('should have SKILL.md source file with valid markdown', async () => {
+      const filePath = join(templatesDir, 'skills/humanizer/SKILL.md');
+      const content = await readFile(filePath, 'utf-8').catch(() => null);
+
+      expect(content).not.toBeNull();
+      expect(content).toMatch(/^#/m);
+    });
+
+    it('should have creator.humanizer.md command source file with valid markdown', async () => {
+      const filePath = join(templatesDir, 'commands/creator.humanizer.md');
+      const content = await readFile(filePath, 'utf-8').catch(() => null);
+
+      expect(content).not.toBeNull();
+      expect(content).toMatch(/^#/m);
+    });
+
+    it('SKILL.md should contain key humanizer sections', async () => {
+      const filePath = join(templatesDir, 'skills/humanizer/SKILL.md');
+      const content = await readFile(filePath, 'utf-8');
+
+      expect(content).toContain('# CONTENT PATTERNS');
+      expect(content).toContain('# LANGUAGE PATTERNS');
+      expect(content).toContain('# STYLE PATTERNS');
+      expect(content).toContain('# QUALITY SCORE');
+      expect(content).toMatch(/Keep the meaning/);
+      expect(content).toContain('# PRE-SUBMISSION CHECKLIST');
     });
   });
 

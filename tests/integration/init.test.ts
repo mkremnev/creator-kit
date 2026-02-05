@@ -64,6 +64,24 @@ describe('init command', () => {
       ).toBe(true);
     });
 
+    it('should create skill directory', async () => {
+      await initCommand({ ai: 'claude', force: false });
+
+      expect(await directoryExists(join(tempDir, '.claude/skills/humanizer'))).toBe(true);
+    });
+
+    it('should create skill file', async () => {
+      await initCommand({ ai: 'claude', force: false });
+
+      expect(await fileExists(join(tempDir, '.claude/skills/humanizer/SKILL.md'))).toBe(true);
+    });
+
+    it('should create humanizer command file', async () => {
+      await initCommand({ ai: 'claude', force: false });
+
+      expect(await fileExists(join(tempDir, '.claude/commands/creator.humanizer.md'))).toBe(true);
+    });
+
     it('should create constitution and config files', async () => {
       await initCommand({ ai: 'claude', force: false });
 

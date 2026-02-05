@@ -4,6 +4,7 @@
 
 export const SCAFFOLD_DIRECTORIES: readonly string[] = [
   '.claude/commands',
+  '.claude/skills/humanizer',
   '.contents/templates/content',
   '.contents/templates/workflow',
   '.contents/scripts/bash',
