@@ -1,6 +1,8 @@
 import { defineConfig } from 'tsup';
-import { cp } from 'fs/promises';
+import { cp, readFile } from 'fs/promises';
 import { resolve } from 'path';
+
+const pkg = JSON.parse(await readFile('package.json', 'utf-8'));
 
 export default defineConfig({
   entry: ['src/cli/index.ts'],
@@ -10,6 +12,9 @@ export default defineConfig({
   clean: true,
   target: 'node18',
   outDir: 'dist/cli',
+  define: {
+    __PKG_VERSION__: JSON.stringify(pkg.version),
+  },
   banner: {
     js: '#!/usr/bin/env node',
   },
