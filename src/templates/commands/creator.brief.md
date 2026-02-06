@@ -68,7 +68,7 @@ Build the tool call using the tables above. Key rules:
 - **First call**: Include all applicable always-ask questions (up to 3). Skip any whose answer is already explicit in the user's input.
 - **Second call** (only if needed): Include applicable conditional questions (up to 2). Skip any covered by constitution.
 - **Maximum**: 5 questions total across both calls.
-- **multiSelect**: `false` for all questions except **Platform** which uses `true` (content can target multiple platforms).
+- **multiSelect**: `true` for all questions (content can target multiple platforms).
 - **Options**: Use 2-4 options from the table. Each option needs a `label` (short) and `description` (1 sentence explaining what this means for the content).
 - **"Other"**: The tool automatically adds an "Other" option — do not add it manually.
 - **Wait**: Do not generate the brief until all `AskUserQuestion` calls are answered.
@@ -129,7 +129,7 @@ Then, if evidence and scope are not covered:
         {"label": "Industry research", "description": "Published studies or benchmarks"},
         {"label": "Not yet", "description": "Will figure out proof points later"}
       ],
-      "multiSelect": false
+      "multiSelect": true
     },
     {
       "question": "How deep should this post go?",
