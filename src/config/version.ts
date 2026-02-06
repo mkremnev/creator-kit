@@ -1,5 +1,8 @@
 /**
- * Package version - kept in sync with package.json
+ * Package version — injected from package.json at build time via tsup `define`.
+ * Single source of truth: package.json → tsup.config.ts → __PKG_VERSION__
  */
 
-export const VERSION = '1.0.0';
+declare const __PKG_VERSION__: string;
+
+export const VERSION = __PKG_VERSION__;
